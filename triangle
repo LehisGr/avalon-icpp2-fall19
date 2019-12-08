@@ -1,0 +1,56 @@
+#include<iostream>
+#include<fstream>
+#include<stdio.h>
+#include<math.h>
+Using namespace std;
+struct Triangle
+{
+	int len1;
+	int len2;
+	int len3;
+	bool zalivka;
+	string color;
+	float squaere;
+	int perim;
+	float fato;
+};
+ostream& operator << (ostream& out, Triangle triangle)
+{
+	out << triangle.len1 << "  "<<triangle.len2 << "  " << triangle.len3 << "  "<<triangle.perim << "  "<<
+		triangle.squaere << "  "<<triangle.fato << "  "<<triangle.color ;
+	return out;
+}
+istream& operator >> (istream& in, Triangle& triangle)
+{
+
+	in >> triangle.color>> triangle.len1>> triangle.len2 >> triangle.len3 >> triangle.fato;
+	return in;
+}
+float Square(Triangle tri)
+{
+	float p = (tri.len1 + tri.len2 + tri.len3) / 2;
+	return sqrt(p*(p- tri.len1)*(p- tri.len2)*(p- tri.len3));
+}
+int Perimetr(Triangle tri)
+{
+	return tri.len1 + tri.len2 + tri.len3;
+}
+int main()
+{
+	ifstream Input;
+	ofstream Output;
+	Input.open("Triangle.txt");
+	Output.open("Triangle_out.txt");
+	Triangle data[100]{};
+	for (int i = 0; i < 100; ++i)
+	{
+		Input >> data[i];
+	}
+
+	for (int i = 0; i < 100; ++i)
+	{
+		data[i].squaere = Square(data[i]);
+		data[i].perim = Perimetr(data[i]);
+		Output<<data[i]<<std::endl;
+	}
+}
