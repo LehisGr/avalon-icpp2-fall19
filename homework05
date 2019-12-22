@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+#include "header.h"
+#include <limits>
+using namespace std;
+int main()
+{
+
+	const int size = 24;
+	string name = "bool";
+	setlocale(0, "");
+	cout << "Òèï ïåðåìåííîé		|    Ðàçìåð     |	          Çíà÷åíèå               |  Êîëè÷åñòâî    "<<endl;
+	cout << "			|     áàéò    	|    Ìèíèìàëüíîå     |    Ìàêñèìàëüíîå    | çíà÷èìûõ áèò   "<<endl;
+	cout << "---------------------------------------------------------------------------------------------------" <<endl;
+	printf("%-24s|%15d|%20d|%20d|%16d\n", name.c_str(), sizeof(bool), numeric_limits<bool>::min(),numeric_limits<bool>::max(), 1);
+	name = "unsigned short";
+	printf("%-24s|%15d|%20u|%20u|%16d\n", name.c_str(), sizeof(unsigned short), numeric_limits<unsigned short>::min(), numeric_limits<unsigned short>::max(), sizeof(unsigned short)*8);
+	name = "short";
+	printf("%-24s|%15d|%20d|%20d|%16d\n", name.c_str(), sizeof(short), numeric_limits<short>::min(), numeric_limits<short>::max(), sizeof(short) * 8-1);
+	name = "unsigned int";
+	printf("%-24s|%15d|%20u|%20u|%16d\n", name.c_str(), sizeof(unsigned int), numeric_limits<unsigned int>::min(),numeric_limits<unsigned int>::max(), sizeof(unsigned int) * 8);
+	name = "int";
+	printf("%-24s|%15d|%20d|%20d|%16d\n", name.c_str(), sizeof(int), numeric_limits<int>::min(), numeric_limits<int>::max(), sizeof(int) * 8 - 1);
+	name = "unsigned long";
+	printf("%-24s|%15d|%20u|%20u|%16d\n", name.c_str(), sizeof(unsigned long), numeric_limits<unsigned long>::min(), numeric_limits<unsigned long>::max(), sizeof(unsigned long) * 8);
+	name = "long";
+	printf("%-24s|%15d|%20d|%20d|%16d\n", name.c_str(), sizeof(long), numeric_limits<long>::min(),numeric_limits<long>::max(), sizeof(long) * 8 - 1);
+	name = "unsigned long long int";
+	printf("%-24s|%15d|%20llu|%20llu|%16d\n", name.c_str(), sizeof(unsigned long long int),numeric_limits<unsigned long long int >::min(),numeric_limits<unsigned long long int>::max(), sizeof(unsigned long long int) * 8);
+	name = "long long";
+	printf("%-24s|%15d|%20lld|%20lld|%16d\n", name.c_str(), sizeof(long long int), numeric_limits<long long int>::min(), numeric_limits<long long int>::max(), sizeof(long long int) * 8-1);
+	name = "char";
+	printf("%-24s|%15d|%20d|%20d|%16d\n", name.c_str(), sizeof(char), numeric_limits<char>::min(), numeric_limits<char>::max(), sizeof(char) * 8);
+	name = "float";
+	printf("%-24s|%15d|%20e|%20e|%16d\n", name.c_str(), sizeof(float), numeric_limits<float>::min(), numeric_limits<float>::max(), sizeof(float) * 8);
+	name = "double";
+	printf("%-24s|%15d|%20e|%20e|%16d\n", name.c_str(), sizeof(double), numeric_limits<double>::min(), numeric_limits<double>::max(), sizeof(double) * 8);
+	return 0;
+}
