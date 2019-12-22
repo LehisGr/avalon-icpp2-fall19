@@ -1,4 +1,8 @@
+#include <iostream>
+using namespace std;
+int main(){
 Date randomDates[100];
+
 	Date *ptr = randomDates;
 	for (int i = 0; i < 100; i++) {
 		randomDates[i].day = GetRandomValue(1, 31);
@@ -15,6 +19,7 @@ Date randomDates[100];
 		}
 		randomDates[i] = *ptr;
 	}
+	
 	Date input;
 	int numToMonth;
 	TimeDelta deltaMin, deltaMax, deltaLoop;
@@ -23,6 +28,7 @@ Date randomDates[100];
 	input.month = static_cast<Month>(numToMonth);
 	deltaMin.delta = 99999999999999;
 	deltaMax.delta = -99999999999999;
+	
 	for (int i = 0; i < 99; i++) {
 		deltaLoop = countDistance(randomDates[i], randomDates[i + 1]);
 		if (deltaLoop.delta < 0) {
