@@ -1,0 +1,40 @@
+Date randomDates[100];
+	Date *ptr = randomDates;
+	for (int i = 0; i < 100; i++) {
+		randomDates[i].day = GetRandomValue(1, 31);
+		randomDates[i].month = static_cast<Month>(GetRandomValue(1, 12));
+		randomDates[i].year = GetRandomValue(1, 9999);
+		ptr = tryFillDate(randomDates[i].year, randomDates[i].month, randomDates[i].day);
+		if (ptr == nullptr) {
+			do {
+				randomDates[i].day = GetRandomValue(1, 31);
+				randomDates[i].month = static_cast<Month>(GetRandomValue(1, 12));
+				randomDates[i].year = GetRandomValue(1, 9999);
+				ptr = tryFillDate(randomDates[i].year, randomDates[i].month, randomDates[i].day);
+			} while (ptr == nullptr);
+		}
+		randomDates[i] = *ptr;
+	}
+	Date input;
+	int numToMonth;
+	TimeDelta deltaMin, deltaMax, deltaLoop;
+	cout << "Введите желаемую дату: " << endl;
+	cin >> input.day >> numToMonth >> input.year;
+	input.month = static_cast<Month>(numToMonth);
+	deltaMin.delta = 99999999999999;
+	deltaMax.delta = -99999999999999;
+	for (int i = 0; i < 99; i++) {
+		deltaLoop = countDistance(randomDates[i], randomDates[i + 1]);
+		if (deltaLoop.delta < 0) {
+			deltaLoop = countDistance(randomDates[i + 1], randomDates[i]);
+		}
+		if (ToDate(deltaLoop) > ToDate(deltaMax)) {
+			deltaMax = deltaLoop;
+		}
+		if ((ToDate(deltaLoop)) < ToDate(deltaMin)) {
+			deltaMin = deltaLoop;
+		}
+	}
+	cout << "Наименьшее расстояние между датами: " << deltaMin.delta << endl;
+	cout << "Наибольшее расстояние между датами: " << deltaMax.delta << endl;
+}
